@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/nav.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/menu.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+
+  <title><%= title %></title>
+</head>
+<body>
+  <%- include('mod/navbar') %>
+  <h1 class="title-menu">Menú Registro de Información</h1>
+
+  <% if (num_cedula) { %>
+    <h2 class="datos-menu-etiquetas">Nombre: <span class="datosOpeario-menu"> <%= operarioDato.nombres %>  <%= operarioDato.apellidos %> </span></h2>
+    <h2 class="datos-menu-etiquetas"><b>Cédula : </b><span class="datosOpeario-menu"><%= num_cedula %></span> </h2>
+    <h2 class="datos-menu-etiquetas"><b>Regional : </b><span class="datosOpeario-menu"><%= operarioDato.proyecto_sede %></span> </h2>
+  <% } else { %>
+    <h2>Cédula no disponible</h2>
+  <% } %>
+
+  <% 
+    // Asegurarse de que EstadoEmpleado es un número
+    const estadoNum = parseInt(EstadoEmpleado, 10) || 0;
+  %>
+
+  <div class="container-info">
+    <!-- Opción "Actualizar Información" -->
+    <% if (estadoNum & 1) { %>
+      <!-- Opción habilitada -->
+      <div class="container-info-personal">
+        <a class="title-menu-info" href="/formulario/Registro">Actualizar Información</a>
+        <img class="img-info" src="/img/info-personal.png" alt="">
+      </div>
+    <% } else { %>
+      <!-- Opción deshabilitada -->
+      <div class="container-info-personal">
+        <span class="title-menu-info-disabled">Actualizar Información</span>
+        <img class="img-info" src="/img/info-personal.png" alt="">
+      </div>
+    <% } %>
+
+    <!-- Opción "Cargar Documentos" -->
+    <% if (estadoNum & 2) { %>
+      <!-- Opción habilitada -->
+      <div class="container-info-personal">
+        <a class="title-menu-info" href="/anexos">Cargar Documentos</a>
+        <img class="img-info" src="/img/carga-archivo.png" alt="">
+      </div>
+    <% } else { %>
+      <!-- Opción deshabilitada -->
+      <div class="container-info-personal">
+        <span class="title-menu-info-disabled">Cargar Documentos</span>
+        <img class="img-info" src="/img/carga-archivo.png" alt="">
+      </div>
+    <% } %>
+  </div>
+</body>
+</html>

@@ -1,0 +1,97 @@
+.container{
+    background-color: white;
+    margin-top: 10px;
+    border-radius: 2rem;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.4);
+    margin-bottom: 3rem;
+}
+
+.title-subir_documentos{
+    font-family: "Arial", sans-serif;
+    font-size: 2.5rem;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    background-color: rgb(213, 248, 213);
+    border-radius: 10px;
+}
+
+form{
+    border-bottom: 1px solid green;
+    margin-bottom: 1rem;
+    /* background:  pink; */
+}
+
+.btn-link{
+    width: 2rem;
+    /* background-color: rgb(6, 117, 235); */
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-btn_anexos{
+    width: 40%;
+    /* background-color: pink; */
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 20px 0px 10px;
+}
+
+.img-enlace{
+    width: 2rem;
+    height: 2rem;
+}
+
+.lbl-title_documento{
+    width: 100%;
+    padding-left: 7px;
+    background: rgb(213, 248, 213);
+    border-radius: 3px;
+}
+
+.btn-guardar_documentos{
+    width: 60%;
+    height: 40px;
+    font-size: 18px;
+
+}
+
+.btn-guardar_documentos:hover{
+    color: white;
+    cursor: pointer;
+    transform: scale(0.95);
+    background-color: #06761e;
+    transition: transform 0.3s ease;
+    transition: background-color 0.3s ease;
+}
+
+.btn-continer_form{
+    width: 100%;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* media query para celulcar */
+
+@media only screen and (max-width: 600px) {
+
+    .container-btn_anexos{
+        width: 90%;
+        flex-direction: row;
+        padding: 0px 20px 0px 5px;
+    }
+
+    .btn_subir{
+        width: 30%;
+    }
+
+    .btn-guardar_documentos{
+        font-size: 1rem;
+    }
+
+}

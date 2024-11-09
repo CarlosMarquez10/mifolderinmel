@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/nav.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/inicio.css">
+  <title><%= title %></title>
+</head>
+<body>
+  <%- include('mod/navbar') %>
+
+  <div class="container-cedula">
+    <h1 class="title-inicio">Cgo - Adm</h1>
+    <form action="/consultar/empleado" method="POST" class="form-container">
+        <label for="num_cedula" class="label-cedula">Ingrese la Cédula:</label>
+        <input type="text" id="num_cedula" name="num_cedula" value="" class="inpt-cedula"><br>
+  
+        <button class="btn-cedula" type="submit">Empezar</button>
+    </form>
+
+    <div class="container-info_cedula">
+      <div class="container_contenido">
+        <h2 class="titleInfo">Información Importante</h2>
+        <p>Para continuar, asegúrese de que la cédula ingresada pertenezca a un empleado de la empresa Inmel. De lo contrario, el sistema no permitirá realizar registros ni actualizaciones de datos. En caso de necesitar asistencia, por favor comuníquese con la <b>Auxiliar administrativa</b>.</p>
+      </div>
+      <div class="containe-instructivo">
+        <h2 class="titleInfo">Instrucciones</h2>
+        <p>Por favor, descarga el instructivo y revísalo para asegurarte de cumplir con los requisitos establecidos por la empresa.</p>
+        <div class="cont-instructivo-link">
+          <span>Dar Clic Aqui ==></span>
+          <a href="/descarga/instructivo"><img class="img-instructivo" src="/img/enlace.png" alt=""></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

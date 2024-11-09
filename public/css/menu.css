@@ -1,0 +1,104 @@
+.container-info{
+    width: 97%;
+    height: 80vh;
+    padding: 20px;
+    background: #f1f1f1;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.container-info-personal{
+    width: 30%;
+    margin: 20px;
+    background: rgb(255, 28, 28);
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 4ms ease-in-out;
+}
+
+.container-info-personal:hover{
+    transform: scale(0.95);
+    transition: transform 0.5s ease;
+}
+
+.title-menu-info{
+    width: 85%;
+    height: 45px;
+    font-size: 20px;
+    color: white;
+    text-decoration: none;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+
+}
+
+.title-menu{
+    font-family: 'Arial', sans-serif; 
+    font-size: 2.5rem;
+    color: #333; 
+    text-align: center; 
+    margin-bottom: 20px; 
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); 
+    background-color: #f5f5f5; 
+    border-radius: 10px;
+}
+
+.img-info{
+    width: 50px;
+    height: 50px;
+}
+
+.title-menu-info-disabled {
+    color: gray;
+    cursor: not-allowed;
+    text-decoration: none;
+    opacity: 80%;
+  }
+  
+
+.container-info-personal img {
+    /* Tus estilos para las imágenes */
+    opacity: 80%;
+}
+
+.datosOpeario-menu{
+    font-size: 20px;
+    font-family: 'Arial', sans-serif; 
+    color: #595959;
+}
+
+.datos-menu-etiquetas{
+    font-size: 24px;
+    font-family: 'Arial', sans-serif; 
+    color: #e60606;
+}
+
+/* merdia query para pantalla celular */
+
+@media only screen and (max-width: 500px) {
+    .container-info{
+        width: 94%;
+        height: 400px;
+        padding: 10px;
+        border-radius: 10px;
+        flex-direction: column;
+    }
+    .container-info-perosnal{
+        width: 400px;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .img-info{
+        width: 40px;
+        height: 40px;
+    }
+}

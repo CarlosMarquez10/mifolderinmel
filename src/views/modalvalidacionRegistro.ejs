@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/modal.css"> <!-- Añade tu archivo de estilos si es necesario -->
+</head>
+<body>
+  <!-- Modal -->
+  <% if (typeof modalMessage !== 'undefined') { %>
+    <div id="modal-overlay"></div>
+    <div id="modal">
+      <p><%= modalMessage %></p>
+      <% if (showMenuButton) { %>
+        <a href="/menu" class="btn">Ir a Menú</a>
+      <% } %>
+      <% if (showCloseButton) { %>
+        <a href="/" class="btn">Cerrar</a>
+      <% } %>
+    </div>
+  <% } %>
+</body>
+</html>

@@ -1,0 +1,108 @@
+.body-formulario{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.formulario-info{
+    width: 60%;
+    padding: 1.5rem;
+    background-color: #fee2e2;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: center;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    margin-bottom: 20px;
+    border-radius: 1rem;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.4); 
+
+}
+
+.title-actualizacionDatos{
+    font-family: 'Arial', sans-serif; 
+    font-size: 2.5rem;
+    color: #333; 
+    text-align: center; 
+    margin-bottom: 20px; 
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); 
+    background-color: #f5f5f5; 
+    border-radius: 10px;
+}
+
+.container-formularioInfo{
+    width: 100%;
+    /* height: 80px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    margin-bottom: 10px;
+    /* background-color: grey; */
+}
+
+.container-formularioInfo label{
+    font-size: 18px;
+    margin-bottom: 5px;
+    color: rgb(2, 2, 2);
+}
+
+.container-formularioInfo input{
+    width: 95%;
+    height: 26px;
+    padding: 5px;
+    margin-left: 5px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    background-color: white;
+}
+
+.btn-actualizacioninfo{
+    /* boton de envio y guardar datos */
+    width: 70%;
+    height: 40px;
+    background-color: #1aa604;
+    color: white;
+    font-size: 18px;
+    border-radius: 5px;
+    border: none;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.btn-actualizacioninfo:hover{
+    transform: scale(0.95);
+    background-color: #06761e;
+    transition: transform 0.3s ease;
+    transition: background-color 0.3s ease;
+}
+
+
+#licenciaFields,
+#conyugeFields,
+#esPapaField {
+  display: none; /* Oculta inicialmente */
+}
+/* estilos para dispositivos de celular */
+
+.formularioInfo-select{
+    width: 96%;
+    height: 2.3rem;
+    border: none;
+    border-radius: 7px;
+    padding-left: 7px;
+}
+
+.licenciaFields{
+    width: 96%;
+}
+
+@media only screen and (max-width: 600px) {
+    .formulario-info{
+        width: 80%;
+    }
+}

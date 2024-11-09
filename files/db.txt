@@ -1,0 +1,4 @@
+name: mifolderinmel
+local: localhost
+pass: mifolder.2024
+port: 3306

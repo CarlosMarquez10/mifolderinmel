@@ -1,0 +1,38 @@
+<!-- src/views/mod/navbar.ejs -->
+<div class="navbar">
+  <img src="/img/inmel.ico" alt="Logo" />
+  <div class="menu">
+    <a href="/">Inicio</a>
+    <!-- Menú desplegable para Descargas -->
+    <div class="dropdown">
+      <a href="#" class="dropbtn" onclick="toggleDropdown(event)">Descargas</a>
+      <div class="dropdown-content">
+        <a href="/descarga/ExcelPte">Empleados Pendiente</a>
+        <a href="/descarga/ExcelData">Excel Database</a>
+      </div>
+    </div>
+    <a href="/pendientes/empleados">Pendientes</a>
+    <a href="/empleado/buscar">Revisar Empleado</a>
+    <a href="/descargas/formato-hoja-de-vida">Formato Hoja de Vida</a>
+  </div>
+</div>
+
+<!-- JavaScript para el menú desplegable (si usas clic) -->
+<script>
+  function toggleDropdown(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    var dropdownContent = event.target.nextElementSibling;
+    dropdownContent.style.display =
+      dropdownContent.style.display === "block" ? "none" : "block";
+  }
+
+  window.onclick = function (event) {
+    if (!event.target.matches(".dropbtn")) {
+      var dropdowns = document.getElementsByClassName("dropdown-content");
+      for (var i = 0; i < dropdowns.length; i++) {
+        dropdowns[i].style.display = "none";
+      }
+    }
+  };
+</script>

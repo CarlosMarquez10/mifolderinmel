@@ -1,0 +1,305 @@
+<!-- views/anexos.ejs -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/nav.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/anexos.css">
+    <title>Cargar Documentos</title>
+ 
+</head>
+<body>
+    <%- include('mod/navbar') %>
+    <div class="container">
+        <% if (missingDocumentsNames && missingDocumentsNames.length > 0) { %>
+            <%- include('mod/modalFaltantes.ejs', { mensaje, missingDocumentsNames }) %>
+        <% } %>
+        <header class="app-header">
+            <h1 class="title-subir_documentos">Mi Folder - Subir Documentos</h1>
+            <p class="subtitle">Sistema de Gestión Documental Personal</p>
+        </header>
+        
+
+        <% if (mensaje) { %>
+            <div class="alert">
+                <%= mensaje %>
+            </div>
+        <% } %>
+
+        <!-- Formulario para Foto de Perfil -->
+        <form action="/anexos/upload/foto_perfil" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label class="lbl-title_documento" for="foto_perfil">Fotografía (JPG, PNG):</label>
+                <input type="file" id="foto_perfil" name="archivo" accept="image/*" required
+                    <% if (documentos && documentos.foto_perfil === 'SI') { %> disabled <% } %>>
+                <% if (documentos && documentos.foto_perfil === 'SI') { %>
+                    <span class="uploaded">Archivo subido</span>
+                <% } %>
+                <div class="container-btn_anexos">
+                    <button type="submit" <% if (documentos && documentos.foto_perfil === 'SI') { %> disabled <% } %>>Subir</button>
+                </div>
+            </div>
+        </form>
+
+        <!-- Formulario para Certificado EPS -->
+        <form action="/anexos/upload/certificado_eps" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label class="lbl-title_documento" for="certificado_eps">Certificado de la EPS (PDF):</label>
+                <input type="file" id="certificado_eps" name="archivo" accept=".pdf" required <% if (documentos && documentos.certificado_eps === 'SI') { %> disabled <% } %> >
+                <% if (documentos && documentos.certificado_eps === 'SI') { %>
+                    <span class="uploaded">Archivo subido</span>
+                <% } %>
+                <div class="container-btn_anexos">
+                    <button  type="submit" <% if (documentos && documentos.certificado_eps === 'SI') { %> disabled <% } %>>Subir</button>
+                    <a class="btn-link" href="<%= enlaces.EPS %>" target="_blank" type="submit"<% if (documentos && documentos.foto_perfil === 'SI') { %> disabled <% } %> ><img class="img-enlace" src="/img/enlace.png" alt=""></a>
+                </div>
+                
+            </div>
+        </form>
+
+        <!-- Formulario para Certificado AFP -->
+        <form action="/anexos/upload/certificado_afp" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label class="lbl-title_documento" for="certificado_afp">Certificado de la AFP (PDF):</label>
+                <input type="file" id="certificado_afp" name="archivo" accept=".pdf" required <% if (documentos && documentos.certificado_afp === 'SI') { %> disabled <% } %> >
+                <% if (documentos && documentos.certificado_afp === 'SI') { %>
+                    <span class="uploaded">Archivo subido</span>
+                <% } %>
+                <div class="container-btn_anexos">
+                    <button type="submit" <% if (documentos && documentos.certificado_afp === 'SI') { %> disabled <% } %>>Subir</button>
+                    <a class="btn-link"  href="<%= enlaces.AFP %>" target="_blank" type="submit"<% if (documentos && documentos.foto_perfil === 'SI') { %> disabled <% } %> ><img class="img-enlace" src="/img/enlace.png" alt=""></a>
+                </div>
+                
+            </div>
+        </form>
+
+        <!-- Formulario para Diploma de Bachiller -->
+        <form action="/anexos/upload/certificado_diploma_bachiller" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+              <label class="lbl-title_documento" for="certificado_diploma_bachiller">Diploma Bachiller (PDF):</label>
+              <input type="file" id="certificado_diploma_bachiller" name="archivo" accept=".pdf" required <% if (documentos && documentos.certificado_diploma_bachiller === 'SI') { %> disabled <% } %> >
+              <% if (documentos && documentos.certificado_diploma_bachiller === 'SI') { %>
+                  <span class="uploaded">Archivo subido</span>
+              <% } %>
+              <button type="submit" <% if (documentos && documentos.certificado_diploma_bachiller === 'SI') { %> disabled <% } %>>Subir</button>
+            </div>
+        </form>
+
+        <!-- Formulario para Titulo profesional -->
+        <form action="/anexos/upload/certificado_titulo_profesional" method="POST" enctype="multipart/form-data">
+         <div class="form-group">
+           <label class="lbl-title_documento" for="certificado_titulo_profesional">Titulo Profesional (PDF):</label>
+           <input type="file" id="certificado_titulo_profesional" name="archivo" accept=".pdf" <% if (documentos && documentos.certificado_titulo_profesional === 'SI') { %> disabled <% } %> >
+           <% if (documentos && documentos.certificado_titulo_profesional === 'SI') { %>
+               <span class="uploaded">Archivo subido</span>
+           <% } %>
+           <button type="submit" <% if (documentos && documentos.certificado_titulo_profesional === 'SI') { %> disabled <% } %>>Subir</button>
+         </div>
+        </form>
+
+        <!-- Formulario para tarjeta_conte -->
+        <form action="/anexos/upload/tarjeta_conte" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+              <label class="lbl-title_documento" for="tarjeta_conte">Tarjeta Conte (PDF):</label>
+              <input type="file" id="tarjeta_conte" name="archivo" accept=".pdf" <% if (documentos && documentos.tarjeta_conte === 'SI') { %> disabled <% } %> >
+              <% if (documentos && documentos.tarjeta_conte === 'SI') { %>
+                  <span class="uploaded">Archivo subido</span>
+              <% } %>
+              <div class="container-btn_anexos">
+                <button type="submit" <% if (documentos && documentos.tarjeta_conte === 'SI') { %> disabled <% } %>>Subir</button>
+                <a class="btn-link" href="https://solicitudmatricula.conte.org.co:8080/consulta-matricula" target="_blank" type="submit"<% if (documentos && documentos.foto_perfil === 'SI') { %> disabled <% } %> ><img class="img-enlace" src="/img/enlace.png" alt=""></a>
+            </div>
+              
+            </div>
+        </form>
+        
+        <!-- Formulario para certificacion_laboral -->
+        <form action="/anexos/upload/certificacion_laboral" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+              <label class="lbl-title_documento" for="certificacion_laboral">Certificación laboral (PDF):</label>
+              <input type="file" id="certificacion_laboral" name="archivo" accept=".pdf" required <% if (documentos && documentos.certificacion_laboral === 'SI') { %> disabled <% } %> >
+              <% if (documentos && documentos.certificacion_laboral === 'SI') { %>
+                  <span class="uploaded">Archivo subido</span>
+              <% } %>
+              <button type="submit" <% if (documentos && documentos.certificacion_laboral === 'SI') { %> disabled <% } %>>Subir</button>
+            </div>
+        </form>
+
+        <!-- Formulario para hoja_vida -->
+        <form action="/anexos/upload/hoja_vida" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+              <label class="lbl-title_documento" for="hoja_vida">Hoja de vida (PDF):</label>
+              <input type="file" id="hoja_vida" name="archivo" accept=".pdf" required <% if (documentos && documentos.hoja_vida === 'SI') { %> disabled <% } %> >
+              <% if (documentos && documentos.hoja_vida === 'SI') { %>
+                  <span class="uploaded">Archivo subido</span>
+              <% } %>
+
+              <div class="container-btn_anexos">
+                <button type="submit" <% if (documentos && documentos.hoja_vida === 'SI') { %> disabled <% } %>>Subir</button>
+                <a class="btn-link" href="/descargas/formato-hoja-de-vida"  type="submit"<% if (documentos && documentos.hoja_vida === 'SI') { %> disabled <% } %> ><img class="img-enlace" src="/img/enlace.png" alt=""></a>
+            </div>
+              
+
+            </div>
+        </form>
+
+        <!-- Formulario para cedula_empleado -->
+        <form action="/anexos/upload/cedula_empleado" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+              <label class="lbl-title_documento" for="cedula_empleado">Cedula de empleado (PDF):</label>
+              <input type="file" id="cedula_empleado" name="archivo" accept=".pdf" required <% if (documentos && documentos.cedula_empleado === 'SI') { %> disabled <% } %> >
+              <% if (documentos && documentos.cedula_empleado === 'SI') { %>
+                  <span class="uploaded">Archivo subido</span>
+              <% } %>
+              <button type="submit" <% if (documentos && documentos.cedula_empleado === 'SI') { %> disabled <% } %>>Subir</button>
+            </div>
+        </form>
+
+        <!-- Formulario para matricula_profesional -->
+        <form action="/anexos/upload/matricula_profesional" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+              <label class="lbl-title_documento" for="matricula_profesional">Matricula profesional (PDF):</label>
+              <input type="file" id="matricula_profesional" name="archivo" accept=".pdf" <% if (documentos && documentos.matricula_profesional === 'SI') { %> disabled <% } %> >
+              <% if (documentos && documentos.matricula_profesional === 'SI') { %>
+                  <span class="uploaded">Archivo subido</span>
+              <% } %>
+              <div class="container-btn_anexos">
+                <button type="submit" <% if (documentos && documentos.matricula_profesional === 'SI') { %> disabled <% } %>>Subir</button>
+                <!-- <a class="btn-link" type="submit"<% if (documentos && documentos.foto_perfil === 'SI') { %> disabled <% } %> ><img class="img-enlace" src="/img/enlace.png" alt=""></a> -->
+            </div>
+              
+            </div>
+        </form>
+
+        <!-- Formulario para carne_vacunacion -->
+        <form action="/anexos/upload/carne_vacunacion" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+              <label class="lbl-title_documento" for="carne_vacunacion">Carne de vacunación (PDF):</label>
+              <input type="file" id="carne_vacunacion" name="archivo" accept=".pdf" required <% if (documentos && documentos.carne_vacunacion === 'SI') { %> disabled <% } %> >
+              <% if (documentos && documentos.carne_vacunacion === 'SI') { %>
+                  <span class="uploaded">Archivo subido</span>
+              <% } %>
+              <button type="submit" <% if (documentos && documentos.carne_vacunacion === 'SI') { %> disabled <% } %>>Subir</button>
+            </div>
+        </form>
+
+        <!-- Formulario para antecedentes_contraloria -->
+        <form action="/anexos/upload/contraloria" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+              <label class="lbl-title_documento" for="contraloria">Antecedentes contraloria (PDF):</label>
+              <input type="file" id="contraloria" name="archivo" accept=".pdf" required <% if (documentos && documentos.contraloria === 'SI') { %> disabled <% } %> >
+              <% if (documentos && documentos.contraloria === 'SI') { %>
+                  <span class="uploaded">Archivo subido</span>
+              <% } %>
+              <div class="container-btn_anexos">
+                <button type="submit" <% if (documentos && documentos.contraloria === 'SI') { %> disabled <% } %>>Subir</button>
+                <a class="btn-link" href="https://www.contraloria.gov.co/web/guest/persona-natural" target="_blank" type="submit"<% if (documentos && documentos.foto_perfil === 'SI') { %> disabled <% } %> ><img class="img-enlace" src="/img/enlace.png" alt=""></a>
+            </div>
+              
+            </div>
+        </form>
+
+        <!-- Formulario para antecedentes_policia -->
+        <form action="/anexos/upload/policia" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+              <label class="lbl-title_documento" for="policia">Antecedentes policia (PDF):</label>
+              <input type="file" id="policia" name="archivo" accept=".pdf" required  <% if (documentos && documentos.policia === 'SI') { %> disabled <% } %> >
+              <% if (documentos && documentos.policia === 'SI') { %>
+                  <span class="uploaded">Archivo subido</span>
+              <% } %>
+              <div class="container-btn_anexos">
+                <button type="submit" <% if (documentos && documentos.policia === 'SI') { %> disabled <% } %>>Subir</button>
+                <a class="btn-link" href="https://antecedentes.policia.gov.co:7005/WebJudicial/index.xhtml" target="_blank" type="submit"<% if (documentos && documentos.foto_perfil === 'SI') { %> disabled <% } %> ><img class="img-enlace" src="/img/enlace.png" alt=""></a>
+            </div>
+              
+            </div>
+        </form>
+
+        <!-- Formulario para antecedentes_procuraduria -->
+        <form action="/anexos/upload/procuraduria" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+              <label class="lbl-title_documento" for="procuraduria">Antecedentes procuraduria (PDF):</label>
+              <input type="file" id="procuraduria" name="archivo" accept=".pdf" required <% if (documentos && documentos.procuraduria === 'SI') { %> disabled <% } %> >
+              <% if (documentos && documentos.procuraduria === 'SI') { %>
+                  <span class="uploaded">Archivo subido</span>
+              <% } %>
+              <div class="container-btn_anexos">
+                <button type="submit" <% if (documentos && documentos.procuraduria === 'SI') { %> disabled <% } %>>Subir</button>
+                <a class="btn-link" href="https://www.procuraduria.gov.co/Pages/Generacion-de-antecedentes.aspx" target="_blank" type="submit"<% if (documentos && documentos.foto_perfil === 'SI') { %> disabled <% } %> ><img class="img-enlace" src="/img/enlace.png" alt=""></a>
+            </div>
+              
+            </div>
+        </form>
+
+        <!-- Formulario para certificacion_manejo_defensivo -->
+        <form action="/anexos/upload/certificacion_manejo_defensivo" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+              <label class="lbl-title_documento" for="certificacion_manejo_defensivo">Certificacion Manejo Defensivo (PDF):</label>
+              <input type="file" id="certificacion_manejo_defensivo" name="archivo" accept=".pdf" <% if (documentos && documentos.certificacion_manejo_defensivo === 'SI') { %> disabled <% } %> >
+              <% if (documentos && documentos.certificacion_manejo_defensivo === 'SI') { %>
+                  <span class="uploaded">Archivo subido</span>
+              <% } %>
+              <div class="container-btn_anexos">
+                <button type="submit" <% if (documentos && documentos.certificacion_manejo_defensivo === 'SI') { %> disabled <% } %>>Subir</button>
+                <!-- <a class="btn-link" type="submit"<% if (documentos && documentos.foto_perfil === 'SI') { %> disabled <% } %> ><img class="img-enlace" src="/img/enlace.png" alt=""></a> -->
+            </div>
+              
+            </div>
+        </form>
+
+        <!-- Formulario para formacion_primeros_auxilios -->
+        <form action="/anexos/upload/formacion_primeros_auxilios" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+              <label class="lbl-title_documento" for="formacion_primeros_auxilios">Formación de primeros auxilios (PDF):</label>
+              <input type="file" id="formacion_primeros_auxilios" name="archivo" accept=".pdf" <% if (documentos && documentos.formacion_primeros_auxilios === 'SI') { %> disabled <% } %> >
+              <% if (documentos && documentos.formacion_primeros_auxilios === 'SI') { %>
+                  <span class="uploaded">Archivo subido</span>
+              <% } %>
+              <button type="submit" <% if (documentos && documentos.formacion_primeros_auxilios === 'SI') { %> disabled <% } %>>Subir</button>
+            </div>
+        </form>
+
+        <!-- Formulario para carne_vacunacion_covid -->
+        <form action="/anexos/upload/carne_vacunacion_covid" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+              <label class="lbl-title_documento" for="carne_vacunacion_covid">Carne vacunación covid (PDF):</label>
+              <input type="file" id="carne_vacunacion_covid" name="archivo" accept=".pdf" required <% if (documentos && documentos.carne_vacunacion_covid === 'SI') { %> disabled <% } %> >
+              <% if (documentos && documentos.carne_vacunacion_covid === 'SI') { %>
+                  <span class="uploaded">Archivo subido</span>
+              <% } %>
+              <button type="submit" <% if (documentos && documentos.carne_vacunacion_covid === 'SI') { %> disabled <% } %>>Subir</button>
+            </div>
+        </form>
+
+        <!-- Formulario para rut_actividad_economica_0010 -->
+        <form action="/anexos/upload/rut_actividad_economica_0010" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+              <label class="lbl-title_documento" for="rut_actividad_economica_0010">RUT actividad economica 0010 (PDF):</label>
+              <input type="file" id="rut_actividad_economica_0010" name="archivo" accept=".pdf" required <% if (documentos && documentos.rut_actividad_economica_0010 === 'SI') { %> disabled <% } %> >
+              <% if (documentos && documentos.rut_actividad_economica_0010 === 'SI') { %>
+                  <span class="uploaded">Archivo subido</span>
+              <% } %>
+              <div class="container-btn_anexos">
+                <button type="submit" <% if (documentos && documentos.rut_actividad_economica_0010 === 'SI') { %> disabled <% } %>>Subir</button>
+                <a class="btn-link" href="https://muisca.dian.gov.co/WebIdentidadLogin/" target="_blank" type="submit"<% if (documentos && documentos.foto_perfil === 'SI') { %> disabled <% } %> ><img class="img-enlace" src="/img/enlace.png" alt=""></a>
+            </div>
+              
+            </div>
+        </form>
+
+
+        <!-- Repite lo anterior para los demás archivos -->
+        <!-- ... -->
+
+        <!-- Botón para Finalizar y Actualizar EstadoAnexos -->
+        <form class="btn-continer_form" action="/anexos/finalizar" method="POST">
+            <button class="btn-guardar_documentos" type="submit">Guardar</button>
+        </form>
+    </div>
+</body>
+</html>

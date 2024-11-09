@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/nav.css" />
+    <link rel="stylesheet" href="/css/inicio.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <title><%= title %></title>
+  </head>
+  <body>
+    <%- include('mod/navbar') %>
+    <h1 class="title-inicio">Consultar Perfil Empleado</h1>
+    <div class="container-cedula">
+      <form action="/archivos/mostrar" method="POST" class="form-container">
+        <label for="cedula" class="label-cedula">Número de Cédula:</label>
+        <input
+          type="text"
+          id="cedula"
+          name="cedula"
+          class="inpt-cedula"
+          required
+        />
+        <button type="submit" class="btn-cedula">Buscar</button>
+      </form>
+    </div>
+
+  </body>
+</html>

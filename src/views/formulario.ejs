@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/nav.css">
+  <link rel="stylesheet" href="/css/formulario.css">
+  <title><%= title %></title>
+</head>
+<body class="body-formulario">
+  <%- include('mod/navbar') %>
+  <h1 class="title-actualizacionDatos">Actualización de Datos en Inmel</h1>
+  <form action="/actualizar/info" method="POST" class="formulario-info">
+    <% if (empleados.length > 0) { 
+         const empleado = empleados[0]; // Asumimos que solo hay un registro para mostrar %>
+         <div class="container-formularioInfo">
+          <label for="proyecto_sede">Proyecto/Sede:</label>
+          <input type="text" id="proyecto_sede" name="proyecto_sede" value="<%= empleado.proyecto_sede %>" required>
+         </div>
+
+         <div class="container-formularioInfo">
+          <label for="num_cedula">N° de cédula:</label>
+          <input type="text" id="num_cedula" name="num_cedula" value="<%= empleado.num_cedula %>" readonly>
+         </div>
+         <div class="container-formularioInfo">
+          <label for="nombres">Nombres:</label>
+          <input type="text" id="nombres" name="nombres" value="<%= empleado.nombres %>" required>
+         </div>
+
+
+      <div class="container-formularioInfo">
+        <label for="apellidos">Apellidos:</label>
+        <input type="text" id="apellidos" name="apellidos" value="<%= empleado.apellidos %>" required>
+      </div>
+
+
+      <div class="container-formularioInfo">
+        <label for="eps">EPS:</label>
+        <input type="text" id="eps" name="eps" value="<%= empleado.eps %>" required>
+      </div>
+
+
+      <div class="container-formularioInfo">
+        <label for="fondo_pension">Fondo de Pensión:</label>
+        <input type="text" id="fondo_pension" name="fondo_pension" value="<%= empleado.fondo_pension %>" required>
+      </div>
+
+
+      <!-- Campo para seleccionar si tiene licencia -->
+      <div class="container-formularioInfo">
+        <label for="licencia">Tiene licencia de conducción:</label>
+        <select class="formularioInfo-select" id="licencia" name="licencia" required>
+          <option value="">Seleccione</option>
+          <option value="SI" <% if (empleado.licencia === 'SI') { %> selected <% } %>>SI</option>
+          <option value="NO" <% if (empleado.licencia === 'NO') { %> selected <% } %>>NO</option>
+        </select>
+      </div>
+
+      <!-- Campos dependientes de licencia -->
+      <div class="licenciaFields" id="licenciaFields">
+        <div class="container-formularioInfo">
+          <label for="categoria_licencia">Categoría de licencia (A1, B2 ...):</label>
+          <input type="text" id="categoria_licencia" name="categoria_licencia" value="<%= empleado.categoria_licencia %>">
+        </div>
+      
+        <div class="container-formularioInfo">
+          <label for="num_licencia_conduccion">Número de licencia de conducción:</label>
+          <input type="text" id="num_licencia_conduccion" name="num_licencia_conduccion" value="<%= empleado.num_licencia_conduccion %>">
+        </div>
+      </div>  
+
+      <div class="container-formularioInfo">
+        <label for="direccion_empleado">Direccion del empleado:</label>
+        <input type="text" id="direccion_empleado" name="direccion_empleado" value="<%= empleado.direccion_empleado %>" required>
+      </div>
+
+
+      <div class="container-formularioInfo">
+        <label for="barrio_sector">Barrio/sector:</label>
+        <input type="text" id="barrio_sector" name="barrio_sector" value="<%= empleado.barrio_sector %>" required>
+      </div>
+
+
+      <div class="container-formularioInfo">
+        <label for="ciudad_municipio">Ciudad/municipio:</label>
+        <input type="text" id="ciudad_municipio" name="ciudad_municipio" value="<%= empleado.ciudad_municipio %>" required>
+      </div>
+
+
+      <div class="container-formularioInfo">
+        <label for="telefono_personal">Telefono personal:</label>
+        <input type="text" id="telefono_personal" name="telefono_personal" value="<%= empleado.telefono_personal %>" required>
+      </div>
+
+
+      <div class="container-formularioInfo">
+        <label for="celular_personal">Celular personal:</label>
+        <input type="text" id="celular_personal" name="celular_personal" value="<%= empleado.celular_personal %>" required>
+      </div>
+
+
+      <div class="container-formularioInfo">
+        <label for="fecha_nacimiento">Fecha de nacimiento: (día/mes/año)</label>
+        <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" value="<%= empleado.fecha_nacimiento %>" required>
+      </div>
+
+
+      <div class="container-formularioInfo">
+        <label for="lugar_nacimiento">Lugar_nacimiento:</label>
+        <input type="text" id="lugar_nacimiento" name="lugar_nacimiento" value="<%= empleado.lugar_nacimiento %>" required>
+      </div>
+
+
+      <div class="container-formularioInfo">
+        <label for="rh">Grupo Sanguineo(RH):</label>
+        <input type="text" id="rh" name="rh" value="<%= empleado.rh %>" required>
+      </div>
+
+
+      <!-- Datos de la licencia de conducción -->
+
+      <div class="container-formularioInfo">
+        <label for="estado_civil">Estado civil:</label>
+        <select class="formularioInfo-select" id="estado_civil" name="estado_civil" required>
+          <option value="soltero" <% if (empleado.estado_civil === 'soltero') { %> selected <% } %>>Soltero</option>
+          <option value="casado" <% if (empleado.estado_civil === 'casado') { %> selected <% } %>>Casado</option>
+          <option value="union libre" <% if (empleado.estado_civil === 'union libre') { %> selected <% } %>>Unión Libre</option>
+        </select>
+      </div>
+
+      <div id="conyugeFields" class="container-formularioInfo">
+        <label for="nombre_conyuge">Nombre del cónyuge:</label>
+        <input type="text" id="nombre_conyuge" name="nombre_conyuge" value="<%= empleado.nombre_conyuge %>">
+      
+        <label for="num_cedula_conyuge">Número celular del cónyuge:</label>
+        <input type="text" id="num_cedula_conyuge" name="num_cedula_conyuge" value="<%= empleado.num_cedula_conyuge %>">
+      
+        <label for="fecha_nacimiento_conyuge">Fecha de nacimiento del cónyuge:</label>
+        <input type="date" id="fecha_nacimiento_conyuge" name="fecha_nacimiento_conyuge" value="<%= empleado.fecha_nacimiento_conyuge %>">
+      </div>
+
+      <!-- si es papá -->
+
+      <div id="esPapaField" class="container-formularioInfo">
+        <label for="es_papa_si_no">Es papá:</label>
+        <select class="formularioInfo-select" id="es_papa_si_no" name="es_papa_si_no" required>
+          <option value="SI" <% if (empleado.es_papa_si_no === 'SI') { %> selected <% } %>>SI</option>
+          <option value="NO" <% if (empleado.es_papa_si_no === 'NO') { %> selected <% } %>>NO</option>
+        </select>
+      </div>
+
+      <div class="container-formularioInfo">
+        <label for="num_hijos">Número de hijos:</label>
+        <input type="number" id="num_hijos" name="num_hijos" value="<%= empleado.num_hijos %>" min="0" required>
+      </div>
+
+      
+      <!-- datos de estudios -->
+
+      <div class="container-formularioInfo">
+        <label for="nivel_escolaridad">Nivel de escolaridad:</label>
+        <input type="text" id="nivel_escolaridad" name="nivel_escolaridad" value="<%= empleado.nivel_escolaridad %>" required>
+      </div>
+
+
+      <div class="container-formularioInfo">
+        <label for="nombre_titulo_aprobado">Nombre del titulo aprobado:</label>
+        <input type="text" id="nombre_titulo_aprobado" name="nombre_titulo_aprobado" value="<%= empleado.nombre_titulo_aprobado %>" required>
+      </div>
+
+
+      <div class="container-formularioInfo">
+        <label for="num_matricula_profesional">Numero de matricula profesional:</label>
+        <input type="text" id="num_matricula_profesional" name="num_matricula_profesional" value="<%= empleado.num_matricula_profesional %>" required>
+      </div>
+
+
+      <div class="container-formularioInfo">
+        <label for="talla_camisa">Talla de la camisa:</label>
+        <input type="text" id="talla_camisa" name="talla_camisa" value="<%= empleado.talla_camisa %>" required>
+      </div>
+
+
+      <div class="container-formularioInfo">
+        <label for="talla_pantalon">Talla de la pantalon:</label>
+        <input type="text" id="talla_pantalon" name="talla_pantalon" value="<%= empleado.talla_pantalon %>" required>
+      </div>
+
+
+      <div class="container-formularioInfo">
+        <label for="talla_zapatos">Talla de la zapatos:</label>
+        <input type="text" id="talla_zapatos" name="talla_zapatos" value="<%= empleado.talla_zapatos %>" required>
+      </div>
+
+
+      <!-- <div class="container-formularioInfo">
+        <label for="nombre_conyuge">Nombre del conyuge:</label>
+        <input type="text" id="nombre_conyuge" name="nombre_conyuge" value="<%= empleado.nombre_conyuge %>" required>
+      </div>
+
+
+      <div class="container-formularioInfo">
+        <label for="num_cedula_conyuge">Numero celular del conyuge:</label>
+        <input type="text" id="num_cedula_conyuge" name="num_cedula_conyuge" value="<%= empleado.num_cedula_conyuge %>" required>
+      </div>
+
+
+      <div class="container-formularioInfo">
+        <label for="fecha_nacimiento_conyuge">fecha de nacimiento del conyuge: (día/mes/año)</label>
+        <input type="text" id="fecha_nacimiento_conyuge" name="fecha_nacimiento_conyuge" value="<%= empleado.fecha_nacimiento_conyuge %>" required>
+      </div> -->
+
+      <div class="container-formularioInfo">
+        <label for="conte">Tarjeta Conte:</label>
+        <input type="text" id="conte" name="conte" value="<%= empleado.conte %>" required>
+      </div>
+
+      
+      <div class="container-formularioInfo">
+        <label for="email">Correo Personal:</label>
+        <input type="text" id="email" name="email" value="<%= empleado.email %>" required>
+      </div>
+
+<!-- 
+      <div class="container-formularioInfo">
+        <label for="es_papa_si_no">Es papá:</label>
+        <input type="text" id="es_papa_si_no" name="es_papa_si_no" value="<%= empleado.es_papa_si_no %>" required><br>
+      </div> -->
+
+
+      
+      <button class="btn-actualizacioninfo" type="submit">Guardar Info</button>
+    <% } else { %>
+      <p>No se encontraron datos para mostrar.</p>
+    <% } %>
+  </form>
+<!-- script para manejar las validaciones de los campos y poder mostra los demas campos hijos -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Obtener referencias a los elementos
+      const licenciaSelect = document.getElementById('licencia');
+      const licenciaFields = document.getElementById('licenciaFields');
+  
+      const estadoCivilSelect = document.getElementById('estado_civil');
+      const conyugeFields = document.getElementById('conyugeFields');
+  
+      const numHijosInput = document.getElementById('num_hijos');
+      const esPapaField = document.getElementById('esPapaField');
+  
+      // Función para mostrar u ocultar los campos de licencia
+      function toggleLicenciaFields() {
+        if (licenciaSelect.value === 'SI') {
+          licenciaFields.style.display = 'block';
+        } else {
+          licenciaFields.style.display = 'none';
+          // Opcional: Limpiar los valores de los campos
+          document.getElementById('categoria_licencia').value = '';
+          document.getElementById('num_licencia_conduccion').value = '';
+        }
+      }
+  
+      // Función para mostrar u ocultar los campos del cónyuge
+      function toggleConyugeFields() {
+        if (estadoCivilSelect.value === 'casado' || estadoCivilSelect.value === 'union libre') {
+          conyugeFields.style.display = 'block';
+        } else {
+          conyugeFields.style.display = 'none';
+          // Opcional: Limpiar los valores de los campos
+          document.getElementById('nombre_conyuge').value = '';
+          document.getElementById('num_cedula_conyuge').value = '';
+          document.getElementById('fecha_nacimiento_conyuge').value = '';
+        }
+      }
+  
+      // Función para mostrar u ocultar el campo "Es papá"
+      function toggleEsPapaField() {
+        if (parseInt(numHijosInput.value) > 0) {
+          esPapaField.style.display = 'block';
+        } else {
+          esPapaField.style.display = 'none';
+          // Opcional: Limpiar el valor del campo
+          document.getElementById('es_papa_si_no').value = 'NO';
+        }
+      }
+  
+      // Añadir event listeners
+      licenciaSelect.addEventListener('change', toggleLicenciaFields);
+      estadoCivilSelect.addEventListener('change', toggleConyugeFields);
+      numHijosInput.addEventListener('input', toggleEsPapaField);
+  
+      // Llamar a las funciones al cargar la página para establecer el estado inicial
+      toggleLicenciaFields();
+      toggleConyugeFields();
+      toggleEsPapaField();
+    });
+  </script>
+  
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/nav.css">
+    <link rel="stylesheet" href="/css/verPerfil.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+    <title><%= title %></title>
+  </head>
+  <body>
+    <%- include('mod/navbar') %>
+    <h1 class="title_perfil_empleado">Documentación del empleado</h1>
+    <div class="container">
+      <div class="sidebar">
+        <h2 class="documentos-perfil_cedula" >Cédula: <%= cedula %></h2>
+
+        <% if (profileImage) { %>
+          <div class="container-img_perfil">
+            <img
+            src="/archivos/registros/<%= cedula %>/<%= encodeURIComponent(profileImage) %>"
+            alt="Foto de Perfil"
+            class="profile-image"
+          />
+          </div>
+        <% } else { %>
+          <p>No hay foto de perfil disponible.</p>
+        <% } %>
+
+        <h3 class="documentos-perfil">Documentos:</h3>
+        <% if (files.length > 0) { %>
+        <ul class="file-list">
+          <% files.forEach(function(file) { %>
+          <li>
+            <a
+              href="#"
+              onclick="verDocumento('<%= encodeURIComponent(file) %>'); return false;"
+            >
+              <%= file %>
+            </a>
+          </li>
+          <% }); %>
+        </ul>
+        <% } else { %>
+        <p>No se encontraron archivos PDF para esta cédula.</p>
+        <% } %>
+      </div>
+      <div class="content">
+        <iframe class="visor-pdf" id="pdfViewer" class="pdf-viewer" src=""></iframe>
+      </div>
+    </div>
+
+    <script>
+      function verDocumento(archivo) {
+        const cedula = '<%= cedula %>';
+        const pdfViewer = document.getElementById('pdfViewer');
+        pdfViewer.src = '/archivos/registros/' + cedula + '/' + archivo;
+      }
+    
+      // Cargar el primer PDF automáticamente
+      <% if (files.length > 0) { %>
+        verDocumento('<%= encodeURIComponent(files[0]) %>');
+      <% } %>
+    </script>
+    
+  </body>
+</html>
